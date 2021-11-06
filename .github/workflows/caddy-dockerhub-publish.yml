@@ -6,6 +6,7 @@ name: caddy on Docker Hub
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     paths:
     - 'caddy/**'

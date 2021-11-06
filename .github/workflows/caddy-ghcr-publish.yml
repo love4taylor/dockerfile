@@ -6,6 +6,7 @@ name: caddy on GitHub Packages
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     paths:
     - 'caddy/**'
@@ -61,5 +62,5 @@ jobs:
           context: ./caddy/
           platforms: linux/amd64,linux/arm64, linux/arm/v7
           push: true
-          tags: ${{ env.IMAGE_NAME }}:latest
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           labels: ${{ steps.meta.outputs.labels }}
