@@ -14,7 +14,8 @@ RUN xcaddy build \
     --with github.com/ueffel/caddy-imagefilter/all \
     --with github.com/porech/caddy-maxmind-geolocation \
     --with github.com/sillygod/cdp-cache \
-    --with github.com/hairyhenderson/caddy-teapot-module
+    --with github.com/hairyhenderson/caddy-teapot-module \
+    --with github.com/imgk/caddy-trojan
 
 FROM caddy:2
 
