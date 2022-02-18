@@ -4,7 +4,8 @@ WORKDIR /app
 ENV NODE_ENV production
 RUN set -eux; \
 	# npm config set registry https://registry.npm.taobao.org; \
-	npm install --production --silent @waline/vercel
+	npm install --production --silent @waline/vercel; \
+	sed -i "s@module.exports = {@module.exports = {\n  host: '0.0.0.0',@g" node_modules/@waline/vercel/src/config/config.js
 
 FROM node:lts-alpine
 WORKDIR /app
@@ -15,8 +16,7 @@ RUN set -eux; \
 	apk add --no-cache bash; \
 	apk add --no-cache --virtual .build-deps alpine-conf; \
 	setup-timezone -z ${TZ}; \
-	apk del --no-network .build-deps; \
-	sed -i "s@module.exports = {@module.exports = {\n  host: '0.0.0.0',@g" node_modules/@waline/vercel/src/config/config.js
+	apk del --no-network .build-deps
 COPY --from=build /app .
 EXPOSE 8360
 CMD ["node", "node_modules/@waline/vercel/vanilla.js"]
