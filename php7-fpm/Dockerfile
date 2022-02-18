@@ -1,4 +1,4 @@
-FROM php:7-fpm
+FROM php:7.4.28-fpm
 
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT

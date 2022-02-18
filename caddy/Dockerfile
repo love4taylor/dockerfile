@@ -1,4 +1,4 @@
-FROM caddy:2-builder AS builder
+FROM caddy:2.4.6-builder AS builder
 
 RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare \
@@ -17,7 +17,7 @@ RUN xcaddy build \
     --with github.com/hairyhenderson/caddy-teapot-module \
     --with github.com/imgk/caddy-trojan
 
-FROM caddy:2
+FROM caddy:2.4.6
 
 ARG GIT_COMMIT=unspecified
 LABEL git_commit=$GIT_COMMIT

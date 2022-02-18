@@ -10,11 +10,6 @@ on:
     paths:
     - 'ooklaserver/**'
 
-env:
-  IMAGE_NAME: love4taylor/ooklaserver
-  CONTEXT_DIR: ./ooklaserver/
-
-
 jobs:
   build:
 
@@ -42,12 +37,18 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/${{ env.IMAGE_NAME }}
-          
+          images: ghcr.io/love4taylor/ooklaserver
+        labels: |
+          org.opencontainers.image.title="ooklaserver"
+          org.opencontainers.image.authors="love4taylor"
+          org.opencontainers.image.description="SPEEDTEST.NET server, binaries are officially provided by Ookla."
+          org.opencontainers.image.url="https://github.com/love4taylor/dockerfile/tree/master/ooklaserver"
+          org.opencontainers.image.source="https://github.com/love4taylor/dockerfile/blob/master/ooklaserver/Dockerfile"
+
       # Necessary for Multi-Arch images
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
-        
+
       # Get buildx ready
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -57,8 +58,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
         with:
-          context: ${{ env.CONTEXT_DIR }}
+          context: ./ooklaserver/
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/${{ env.IMAGE_NAME }}:latest
+          tags: ghcr.io/love4taylor/ooklaserver:latest
           labels: ${{ steps.meta.outputs.labels }}
