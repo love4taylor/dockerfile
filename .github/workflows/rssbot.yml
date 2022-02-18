@@ -39,13 +39,13 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: ghcr.io/love4taylor/rssbot
-        labels: |
-          org.opencontainers.image.title="rssbot"
-          org.opencontainers.image.authors="love4taylor"
-          org.opencontainers.image.description="There is official code built to come with multi-architecture support."
-          org.opencontainers.image.url="https://github.com/love4taylor/dockerfile/tree/master/rssbot"
-          org.opencontainers.image.source="https://github.com/iovxw/rssbot"
-          org.opencontainers.image.version="2.0.0"
+          labels: |
+            org.opencontainers.image.title="rssbot"
+            org.opencontainers.image.authors="love4taylor"
+            org.opencontainers.image.description="There is official code built to come with multi-architecture support."
+            org.opencontainers.image.url="https://github.com/love4taylor/dockerfile/tree/master/rssbot"
+            org.opencontainers.image.source="https://github.com/iovxw/rssbot"
+            org.opencontainers.image.version="2.0.0"
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
