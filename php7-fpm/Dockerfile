@@ -1,8 +1,5 @@
 FROM php:7.4.28-fpm
 
-ARG GIT_COMMIT=unspecified
-LABEL git_commit=$GIT_COMMIT
-
 RUN apt-get update \
  && apt-get install -y git \
      zlib1g-dev \

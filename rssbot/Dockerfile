@@ -34,9 +34,6 @@ RUN rustup default nightly && \
 
 FROM alpine:latest
 
-ARG GIT_COMMIT=unspecified
-LABEL git_commit=$GIT_COMMIT
-
 RUN apk --no-cache add ca-certificates
 
 COPY --from=build \

@@ -19,7 +19,4 @@ RUN xcaddy build \
 
 FROM caddy:2.4.6
 
-ARG GIT_COMMIT=unspecified
-LABEL git_commit=$GIT_COMMIT
-
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
