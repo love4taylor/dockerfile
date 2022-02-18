@@ -40,12 +40,12 @@ jobs:
         with:
           images: ghcr.io/love4taylor/waline
           labels: |
-            org.opencontainers.image.title="waline"
-            org.opencontainers.image.authors="love4taylor"
-            org.opencontainers.image.description="Support services in containers on the same network to be able to access Waline by adding a line host:'0.0.0.0' to the official code."
-            org.opencontainers.image.url="https://github.com/love4taylor/dockerfile/tree/master/waline"
-            org.opencontainers.image.source="https://github.com/walinejs/waline"
-            org.opencontainers.image.version="1.7.0"
+            org.opencontainers.image.title=waline
+            org.opencontainers.image.authors=love4taylor
+            org.opencontainers.image.description=Support services in containers on the same network to be able to access Waline by adding a line host:'0.0.0.0' to the official code.
+            org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/waline
+            org.opencontainers.image.source=https://github.com/walinejs/waline
+            org.opencontainers.image.version=1.7.0
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU

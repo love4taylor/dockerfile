@@ -40,12 +40,12 @@ jobs:
         with:
           images: ghcr.io/love4taylor/php
           labels: |
-            org.opencontainers.image.title="php7-fpm"
-            org.opencontainers.image.authors="love4taylor"
-            org.opencontainers.image.description="A custom version of php7-fpm that includes some of the author's own commonly used modules"
-            org.opencontainers.image.url="https://github.com/love4taylor/dockerfile/tree/master/php7-fpm"
-            org.opencontainers.image.source="https://github.com/love4taylor/dockerfile/blob/master/php7-fpm/Dockerfile"
-            org.opencontainers.image.version="7.4.28"
+            org.opencontainers.image.title=php7-fpm
+            org.opencontainers.image.authors=love4taylor
+            org.opencontainers.image.description=A custom version of php7-fpm that includes some of the author's own commonly used modules.
+            org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/php7-fpm
+            org.opencontainers.image.source=https://github.com/love4taylor/dockerfile/blob/master/php7-fpm/Dockerfile
+            org.opencontainers.image.version=7.4.28
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
