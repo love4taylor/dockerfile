@@ -7,16 +7,10 @@ RUN set -eux; \
 	npm install --production --silent @waline/vercel; \
 	sed -i "s@module.exports = {@module.exports = {\n  host: '0.0.0.0',@g" node_modules/@waline/vercel/src/config/config.js
 
-FROM node:lts-alpine
+FROM node:lts-buster-slim
 WORKDIR /app
 ENV TZ Asia/Shanghai
 ENV NODE_ENV production
-RUN set -eux; \
-	# sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories; \
-	apk add --no-cache bash; \
-	apk add --no-cache --virtual .build-deps alpine-conf; \
-	setup-timezone -z ${TZ}; \
-	apk del --no-network .build-deps
 COPY --from=build /app .
 EXPOSE 8360
 CMD ["node", "node_modules/@waline/vercel/vanilla.js"]
