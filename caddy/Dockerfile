@@ -24,12 +24,11 @@ RUN set -eux \
     /data/caddy \
     /etc/caddy \
     /usr/share/caddy \
- && wget -O /etc/caddy/Caddyfile "https://github.com/caddyserver/dist/raw/master/config/Caddyfile" \
- && wget -O /usr/share/caddy/index.html "https://github.com/caddyserver/dist/raw/master/welcome/index.html"
-
-RUN set -eux \
  && apt update \
- && apt install -y libcap2-bin \
+ && apt install -y libcap2-bin curl \
+ && curl -o /etc/caddy/Caddyfile "https://github.com/caddyserver/dist/raw/master/config/Caddyfile" \
+ && curl -o /usr/share/caddy/index.html "https://github.com/caddyserver/dist/raw/master/welcome/index.html" \
+ && rm -rf /var/lib/apt/lists/* \
  && setcap cap_net_bind_service=ep /usr/bin/caddy \
  && chown -R www-data:www-data /config /data /etc/caddy /usr/share/caddy
 
