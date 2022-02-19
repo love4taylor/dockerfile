@@ -46,6 +46,10 @@ jobs:
             org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/waline
             org.opencontainers.image.source=https://github.com/walinejs/waline
             org.opencontainers.image.version=1.7.0
+          tags: |
+            type=raw,value=latest
+          flavor: |
+            latest=false
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
@@ -63,5 +67,5 @@ jobs:
           context: ./waline/
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ghcr.io/love4taylor/waline:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

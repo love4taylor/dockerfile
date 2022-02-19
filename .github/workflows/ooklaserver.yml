@@ -44,6 +44,10 @@ jobs:
             org.opencontainers.image.description=SPEEDTEST.NET server, binaries are officially provided by Ookla.
             org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/ooklaserver
             org.opencontainers.image.source=https://github.com/love4taylor/dockerfile/blob/master/ooklaserver/Dockerfile
+          tags: |
+            type=raw,value=latest
+          flavor: |
+            latest=false
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
@@ -61,5 +65,5 @@ jobs:
           context: ./ooklaserver/
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/love4taylor/ooklaserver:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

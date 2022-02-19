@@ -46,6 +46,10 @@ jobs:
             org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/caddy
             org.opencontainers.image.source=https://github.com/love4taylor/dockerfile/blob/master/caddy/Dockerfile
             org.opencontainers.image.version=2.4.6
+          tags: |
+            type=raw,value=latest
+          flavor: |
+            latest=false
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
@@ -63,5 +67,5 @@ jobs:
           context: ./caddy/
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ghcr.io/love4taylor/caddy:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

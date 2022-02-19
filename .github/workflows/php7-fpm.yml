@@ -46,6 +46,10 @@ jobs:
             org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/php7-fpm
             org.opencontainers.image.source=https://github.com/love4taylor/dockerfile/blob/master/php7-fpm/Dockerfile
             org.opencontainers.image.version=7.4.28
+          tags: |
+            type=raw,value=7-fpm
+          flavor: |
+            latest=false
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
@@ -63,5 +67,5 @@ jobs:
           context: ./php7-fpm/
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
-          tags: ghcr.io/love4taylor/php:7-fpm
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

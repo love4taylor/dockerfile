@@ -46,6 +46,10 @@ jobs:
             org.opencontainers.image.url=https://github.com/love4taylor/dockerfile/tree/master/rssbot
             org.opencontainers.image.source=https://github.com/iovxw/rssbot
             org.opencontainers.image.version=2.0.0
+          tags: |
+            type=raw,value=latest
+          flavor: |
+            latest=false
 
       # Necessary for Multi-Arch images
       - name: Set up QEMU
@@ -63,5 +67,5 @@ jobs:
           context: ./rssbot/
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/love4taylor/rssbot:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
