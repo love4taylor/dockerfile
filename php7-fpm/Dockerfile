@@ -7,5 +7,6 @@ RUN apt-get update \
      libfreetype6-dev \
      libjpeg62-turbo-dev \
      libpng-dev \
+     libpq-dev \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
- && docker-php-ext-install -j$(nproc) mysqli pdo pdo_mysql zip opcache gd
+ && docker-php-ext-install -j$(nproc) mysqli pdo pdo_mysql pdo_pgsql pgsql zip opcache gd
