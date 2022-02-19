@@ -12,7 +12,8 @@ RUN xcaddy build \
     --with github.com/porech/caddy-maxmind-geolocation \
     --with github.com/sillygod/cdp-cache \
     --with github.com/imgk/caddy-trojan \
-    --with github.com/greenpau/caddy-git
+    --with github.com/greenpau/caddy-git \
+    --with github.com/greenpau/caddy-trace
 
 FROM debian:bullseye-slim
 
