@@ -14,6 +14,37 @@ RUN xcaddy build \
     --with github.com/imgk/caddy-trojan \
     --with github.com/greenpau/caddy-git
 
-FROM caddy:2.4.6
+FROM debian:bullseye-slim
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+
+RUN set -eux \
+ && mkdir -p \
+    /config/caddy \
+    /data/caddy \
+    /etc/caddy \
+    /usr/share/caddy \
+ && wget -O /etc/caddy/Caddyfile "https://github.com/caddyserver/dist/raw/master/config/Caddyfile" \
+ && wget -O /usr/share/caddy/index.html "https://github.com/caddyserver/dist/raw/master/welcome/index.html"
+
+RUN set -eux \
+ && apt update \
+ && apt install -y libcap2-bin \
+ && setcap cap_net_bind_service=ep /usr/bin/caddy \
+ && chown -R www-data:www-data /config /data /etc/caddy /usr/share/caddy
+
+ENV XDG_CONFIG_HOME /config
+ENV XDG_DATA_HOME /data
+
+VOLUME /config
+VOLUME /data
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 2019
+
+WORKDIR /srv
+
+USER www-data
+
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]
