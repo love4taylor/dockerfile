@@ -24,11 +24,14 @@ RUN set -eux \
     /config/caddy \
     /data/caddy \
     /etc/caddy \
-    /usr/share/caddy \
+    /usr/share/caddy
+
+COPY Caddyfile /etc/caddy/
+COPY index.html /usr/share/caddy/
+
+RUN set -eux \
  && apt-get update \
- && apt-get install -y libnss3-tools libcap2-bin curl \
- && curl -o /etc/caddy/Caddyfile "https://github.com/caddyserver/dist/raw/master/config/Caddyfile" \
- && curl -o /usr/share/caddy/index.html "https://github.com/caddyserver/dist/raw/master/welcome/index.html" \
+ && apt-get install -y libnss3-tools libcap2-bin ca-certificates mailcap \
  && rm -rf /var/lib/apt/lists/* \
  && setcap cap_net_bind_service=ep /usr/bin/caddy \
  && chown -R www-data:www-data /config /data /etc/caddy /usr/share/caddy
