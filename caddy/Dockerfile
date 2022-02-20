@@ -25,8 +25,8 @@ RUN set -eux \
     /data/caddy \
     /etc/caddy \
     /usr/share/caddy \
- && apt update \
- && apt install -y libcap2-bin curl \
+ && apt-get update \
+ && apt-get install -y libnss3-tools libcap2-bin curl \
  && curl -o /etc/caddy/Caddyfile "https://github.com/caddyserver/dist/raw/master/config/Caddyfile" \
  && curl -o /usr/share/caddy/index.html "https://github.com/caddyserver/dist/raw/master/welcome/index.html" \
  && rm -rf /var/lib/apt/lists/* \
