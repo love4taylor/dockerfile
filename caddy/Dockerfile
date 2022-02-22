@@ -13,7 +13,7 @@ RUN xcaddy build \
     --with github.com/sillygod/cdp-cache \
     --with github.com/imgk/caddy-trojan \
     --with github.com/greenpau/caddy-git \
-    --with github.com/greenpau/caddy-trace
+    --with github.com/sjtug/caddy2-filter
 
 FROM debian:bullseye-slim
 
