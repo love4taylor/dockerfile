@@ -34,12 +34,13 @@ RUN rustup default nightly && \
 
 FROM alpine:latest
 
-RUN apk --no-cache add ca-certificates
+RUN apk --no-cache add ca-certificates tzdata
 
 COPY --from=build \
     /home/rssbot/target/release/rssbot \
     /usr/local/bin/
 
+ENV TZ=Etc/UTC
 ENV DATAFILE="/rssbot/rssdata.json"
 ENV TELEGRAM_BOT_TOKEN=""
 ENV MAX_FEED_SIZE="2097152"
